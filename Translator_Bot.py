@@ -21,16 +21,12 @@ class BotHandler:
 
     def get_last_update(self):
         get_result = self.get_updates()
-
-        if len(get_result) > 0:
-            last_update = get_result[-1]
-
-        return last_update
+        return get_result[-1] if len(get_result) > 0 else None
 
     def translate(self, text):
         url = f'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190326T205614Z.90fe981868ebe21d.07ae7a57abb1ff0f1f3912f6c5af593880090026&text={text}&lang=ru-en'
-        translatedText = requests.get(url).json()['text'][0]
-        return f'{text} -> {translatedText}'
+        translated_text = requests.get(url).json()['text'][0]
+        return f'{text} -> {translated_text}'
 
 
 greet_bot = BotHandler('882179046:AAGLbbPeIlEhHWI8oVKfrbSWpDWQ2yVfjy0')
@@ -42,6 +38,9 @@ def main():
         greet_bot.get_updates(new_offset)
 
         last_update = greet_bot.get_last_update()
+
+        if last_update is None:
+            continue
 
         last_update_id = last_update['update_id']
         last_chat_text = last_update['message']['text']
