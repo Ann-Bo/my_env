@@ -7,7 +7,7 @@ server = Flask(__name__)
 @server.route("/bot", methods=['POST'])
 def getMessage():
     text = request.get_json()
-    print(text)
+    print(text['message']['text'])
     return 'ok'
 
 def main():
