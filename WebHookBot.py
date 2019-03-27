@@ -5,8 +5,6 @@ from flask import Flask, request
 server = Flask(__name__)
 bot_token = os.environ['BOT_TOKEN']
 yandex_key = os.environ['YANDEX_KEY']
-print(bot_token)
-print(yandex_key)
 
 @server.route("/bot", methods=['POST'])
 def getMessage():
@@ -17,7 +15,8 @@ def getMessage():
 
     params = {'chat_id': message['chat']['id'], 'text': f'{text} -> {translated_text}'}
     method = 'sendMessage'
-    requests.post(f'https://api.telegram.org/{bot_token}/{method}', params)
+    resp = requests.post(f'https://api.telegram.org/{bot_token}/{method}', params)
+    print(resp)
 
     return 'ok'
 
