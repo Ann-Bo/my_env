@@ -6,7 +6,7 @@ server = Flask(__name__)
 
 @server.route("/bot", methods=['POST'])
 def getMessage():
-    text = request.stream.read().decode("utf-8")
+    text = request.get_json()
     print(text)
 
 def main():
