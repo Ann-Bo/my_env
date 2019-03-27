@@ -1,6 +1,6 @@
 import requests
-
-from time import sleep
+import os
+from flask import Flask
 
 class BotHandler:
 
@@ -40,6 +40,8 @@ greet_bot = BotHandler('882179046:AAGLbbPeIlEhHWI8oVKfrbSWpDWQ2yVfjy0')
 
 def main():
     new_offset = None
+    server = Flask(__name__)
+    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 
     while True:
         greet_bot.get_updates(new_offset)
