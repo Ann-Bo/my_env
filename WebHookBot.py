@@ -8,6 +8,7 @@ server = Flask(__name__)
 def getMessage():
     text = request.get_json()
     print(text)
+    return 'ok'
 
 def main():
     server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
