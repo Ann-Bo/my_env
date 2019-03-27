@@ -5,6 +5,8 @@ from flask import Flask, request
 server = Flask(__name__)
 bot_token = os.environ['BOT_TOKEN']
 yandex_key = os.environ['YANDEX_KEY']
+print(bot_token)
+print(yandex_key)
 
 @server.route("/bot", methods=['POST'])
 def getMessage():
