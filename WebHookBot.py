@@ -13,7 +13,8 @@ def getMessage():
 
     params = {'chat_id': message['chat']['id'], 'text': f'{text} -> {translated_text}'}
     method = 'sendMessage'
-    resp = requests.post('https://api.telegram.org/bot882179046:AAGLbbPeIlEhHWI8oVKfrbSWpDWQ2yVfjy0' + method, params)
+    print(params)
+    #resp = requests.post('https://api.telegram.org/bot882179046:AAGLbbPeIlEhHWI8oVKfrbSWpDWQ2yVfjy0' + method, params)
 
     return 'ok'
 
