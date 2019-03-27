@@ -1,1 +1,1 @@
-worker: python Translator_Bot.py
+worker: python WebHookBot.py
