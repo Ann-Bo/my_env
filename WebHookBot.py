@@ -6,11 +6,14 @@ server = Flask(__name__)
 
 @server.route("/bot", methods=['POST'])
 def getMessage():
-    text = request.get_json()['message']['text']
+    message = request.get_json()['message']
+    text = message['text']
     url = f'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190326T205614Z.90fe981868ebe21d.07ae7a57abb1ff0f1f3912f6c5af593880090026&text={text}&lang=en'
     translated_text = requests.get(url).json()['text'][0]
-    print(translated_text)
-    #f'{text} -> {translated_text}'
+
+    params = {'chat_id': message['chat_id'], 'text': f'{text} -> {translated_text}'}
+    method = 'sendMessage'
+    resp = requests.post('https://api.telegram.org/bot882179046:AAGLbbPeIlEhHWI8oVKfrbSWpDWQ2yVfjy0' + method, params)
 
     return 'ok'
 
